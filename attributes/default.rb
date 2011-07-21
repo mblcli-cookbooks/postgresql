@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+
 case platform
 when "debian"
 
@@ -66,3 +68,7 @@ else
   default[:postgresql][:version] = "8.4"
   set[:postgresql][:dir]            = "/etc/postgresql/#{node[:postgresql][:version]}/main"
 end
+
+# data directory is platform independent
+default[:postgresql][:data_directory] = "/var/lib/postgresql/#{node[:postgresql][:version]}/main"
+
