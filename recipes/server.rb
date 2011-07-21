@@ -21,7 +21,9 @@ include_recipe "postgresql::client"
 
 # create the data directory if it doesn't already exist
 directory node[:postgresql][:data_directory] do
-  mode 0755
+  mode 0700
+  user 'postgres'
+  group 'postgres'
   action :create
   recursive true
 end
