@@ -19,6 +19,13 @@
 
 include_recipe "postgresql::client"
 
+# create the data directory if it doesn't already exist
+directory node[:postgresql][:data_directory] do
+  mode 0755
+  action :create
+  recursive true
+end
+
 case node[:postgresql][:version]
 when "8.3"
   node.default[:postgresql][:ssl] = "off"
